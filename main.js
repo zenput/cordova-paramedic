@@ -1,43 +1,52 @@
 #!/usr/bin/env node
 
 var parseArgs = require('minimist'),
-    paramedic = require('./paramedic');
-
-var plugins,
-    platformId;
+    path = require('path'),
+    paramedic = require('./lib/paramedic'),
+    ParamedicConfig = require('./lib/ParamedicConfig');
 
 var USAGE = "Error missing args. \n" +
-	"cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --port PORTNUM --browserify]\n" +
-	"`PLATFORM` : the platform id, currently only supports 'ios'\n" +
-	"`PATH` : the relative or absolute path to a plugin folder\n" +
-					"\texpected to have a 'tests' folder.\n" +  
-					"\tYou may specify multiple --plugin flags and they will all\n" + 
-					"\tbe installed and tested together.\n" +
-	"`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
-			  "\t(defaults to 10 minutes) \n" +
-	"`PORTNUM` : (optional) port to use for posting results from emulator back to paramedic server\n" +
-	"--justbuild : (optional) just builds the project, without running the tests \n" +
+    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
+    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
+                    "\tPath to platform can be specified as link to git repo like:\n" +
+                    "\twindows@https://github.com/apache/cordova-windows.git\n" +
+                    "\tor path to local copied git repo like:\n" +
+                    "\twindows@../cordova-windows/\n" +
+    "`PATH` : the relative or absolute path to a plugin folder\n" +
+                    "\texpected to have a 'tests' folder.\n" +
+                    "\tYou may specify multiple --plugin flags and they will all\n" +
+                    "\tbe installed and tested together.\n" +
+    "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
+              "\t(defaults to 10 minutes) \n" +
+    "`PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server(default is from 8008 to 8009)\n" +
+    "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--platformPath : (optional) path to install platform from, git or local file uri";
+    "--useTunnel : (optional) use tunneling instead of local address. default is false\n" +
+    "--config : (optional) read configuration from paramedic configuration file\n" +
+    "--reportSavePath: (optional) path to save Junit results file\n" +
+    "--cleanUpAfterRun: (optional) cleans up the application after the run.";
 
 var argv = parseArgs(process.argv.slice(2));
+var pathToParamedicConfig = argv.config && path.resolve(argv.config);
 
-if(!argv.platform) {
+if (pathToParamedicConfig || // --config
+    argv.platform && argv.plugin) { // or --platform and --plugin
+
+    var paramedicConfig = pathToParamedicConfig ?
+        ParamedicConfig.parseFromFile(pathToParamedicConfig):
+        ParamedicConfig.parseFromArguments(argv);
+
+    paramedic.run(paramedicConfig)
+    .catch(function (error) {
+        console.error(error.message);
+        process.exit(1);
+    })
+    .done(function(isTestPassed) {
+        process.exit(isTestPassed ? 0 : 1);
+    });
+
+} else {
     console.log(USAGE);
     process.exit(1);
 }
-
-var onComplete = function(resCode,resObj,logStr) {
-	console.log("result code is : " + resCode);
-	if(resObj) {
-		console.log(JSON.stringify(resObj));
-	}
-	if(logStr) {
-		console.log(logStr);
-	}
-	process.exit(resCode);
-};
-
-paramedic.run(argv.platform, argv.plugin, onComplete, argv.justbuild, argv.port, argv.timeout, argv.browserify, false, argv.verbose, argv.platformPath);
-

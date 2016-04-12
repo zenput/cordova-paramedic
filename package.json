@@ -1,6 +1,7 @@
 {
   "name": "cordova-paramedic",
   "version": "0.5.0",
+  "license": "Apache 2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
   "bin": {
@@ -11,15 +12,14 @@
     "url": "git://github.com/apache/cordova-paramedic.git"
   },
   "scripts": {
-    "test":"npm run jshint & npm run test-ios",
-    "jshint":"node node_modules/jshint/bin/jshint *.js",
-    "test-appveyor":"npm run test-windows",
-    "test-travis":"npm run test-ios",
-    "test-android":"node main.js --platform android --plugin ./spec/testable-plugin/",
+    "test": "npm run jshint & npm run test-ios",
+    "jshint": "node node_modules/jshint/bin/jshint lib/",
+    "test-appveyor": "npm run test-windows",
+    "test-travis": "npm run test-ios",
+    "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
     "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
-    "test-windows" : "node main.js --platform windows --plugin ./spec/testable-plugin/",
+    "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
     "test-wp8": "node main.js --platform wp8 --plugin ./spec/testable-plugin/"
-
   },
   "keywords": [
     "cordova",
@@ -27,16 +27,22 @@
     "test"
   ],
   "author": "Jesse MacFadyen",
-  "license": "Apache 2.0",
   "dependencies": {
+    "ansi": "^0.3.1",
+    "cordova-common": "^1.1.0",
+    "jasmine-reporters": "^2.1.1",
+    "jasmine-spec-reporter": "^2.4.0",
     "localtunnel": "~1.5.0",
     "minimist": "~1.1.0",
+    "q": "^1.4.1",
     "request": "^2.53.0",
     "shelljs": "~0.3.0",
+    "socket.io": "^1.4.5",
+    "tcp-port-used": "^0.1.2",
     "tmp": "0.0.25"
   },
   "devDependencies": {
-        "jasmine-node": "~1",
-        "jshint": "^2.6.0"
+    "jasmine-node": "~1",
+    "jshint": "^2.6.0"
   }
 }
