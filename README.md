@@ -1,7 +1,7 @@
 cordova-paramedic
 =================
 
-[![Build Status](https://travis-ci.org/purplecabbage/cordova-paramedic.svg?branch=master)](https://travis-ci.org/purplecabbage/cordova-paramedic)
+[![Build Status](https://travis-ci.org/apache/cordova-paramedic.svg?branch=master)](https://travis-ci.org/purplecabbage/cordova-paramedic)
 
 Runs cordova medic/buildbot tests locally.
 
