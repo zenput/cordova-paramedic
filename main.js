@@ -27,7 +27,11 @@ var USAGE           = "Error missing args. \n" +
     "--outputDir: (optional) path to save Junit results file & Device logs\n" +
     "--cleanUpAfterRun: (optional) cleans up the application after the run\n" +
     "--logMins: (optional) Windows only - specifies number of minutes to get logs\n" +
-    "--tccDb: (optional) iOS only - specifies the path for the TCC.db file to be copied.";
+    "--tccDb: (optional) iOS only - specifies the path for the TCC.db file to be copied." +
+    "--shouldUseSauce: (optional) run tests on Saucelabs\n" +
+    "--buildName: (optional) Build name to show in Saucelabs dashboard\n" +
+    "--sauceUser: (optional) Saucelabs username\n" +
+    "--sauceKey: (optional) Saucelabs access key";
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
@@ -65,7 +69,7 @@ if (pathToParamedicConfig || // --config
 
     paramedic.run(paramedicConfig)
     .catch(function (error) {
-        console.error(error.message);
+        console.error(error.stack);
         process.exit(1);
     })
     .done(function(isTestPassed) {
