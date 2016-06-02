@@ -69,7 +69,11 @@ if (pathToParamedicConfig || // --config
 
     paramedic.run(paramedicConfig)
     .catch(function (error) {
-        console.error(error.stack);
+        if (error && error.stack) {
+            console.error(error.stack);
+        } else {
+            console.error(error);
+        }
         process.exit(1);
     })
     .done(function(isTestPassed) {
