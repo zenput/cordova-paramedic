@@ -23,18 +23,25 @@ var platformMap = {
     'iphone':'ios'
 };
 
-function JasmineParamedicProxy(socket) {
-    this.socket = socket;
+function JasmineParamedicProxy() {
     this.specExecuted = 0;
     this.specFailed = 0;
+    window._jasmineParamedicProxyCache = [];
+}
+
+function cacheEvent (eventName, eventObject) {
+    window._jasmineParamedicProxyCache.push({
+        eventName: eventName,
+        eventObject: eventObject
+    });
 }
 
 JasmineParamedicProxy.prototype.jasmineStarted = function (o) {
-    this.socket.emit('jasmineStarted', o);
+    cacheEvent('jasmineStarted', o);
 };
 
 JasmineParamedicProxy.prototype.specStarted = function (o) {
-    this.socket.emit('specStarted', o);
+    cacheEvent('specStarted', o);
 };
 
 JasmineParamedicProxy.prototype.specDone = function (o) {
@@ -45,15 +52,15 @@ JasmineParamedicProxy.prototype.specDone = function (o) {
         this.specFailed++;
     }
 
-    this.socket.emit('specDone', o);
+    cacheEvent('specDone', o);
 };
 
 JasmineParamedicProxy.prototype.suiteStarted = function (o) {
-    this.socket.emit('suiteStarted', o);
+    cacheEvent('suiteStarted', o);
 };
 
 JasmineParamedicProxy.prototype.suiteDone = function (o) {
-    this.socket.emit('suiteDone', o);
+    cacheEvent('suiteDone', o);
 };
 
 JasmineParamedicProxy.prototype.jasmineDone = function (o) {
@@ -69,11 +76,11 @@ JasmineParamedicProxy.prototype.jasmineDone = function (o) {
     o = o || {};
 
     // include platform info
-    o.cordova = {
+    /*o.cordova = {
         platform: (platformMap.hasOwnProperty(p) ? platformMap[p] : p),
         version: version,
         model: devmodel
-    };
+    };*/
 
     // include common spec results
     o.specResults = {
@@ -81,7 +88,7 @@ JasmineParamedicProxy.prototype.jasmineDone = function (o) {
         specFailed   : this.specFailed
     };
 
-    this.socket.emit('jasmineDone', o);
+    cacheEvent('jasmineDone', o);
 };
 
 module.exports = JasmineParamedicProxy;

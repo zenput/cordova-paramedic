@@ -71,7 +71,7 @@ if (pathToParamedicConfig || // --config
     .catch(function (error) {
         if (error && error.stack) {
             console.error(error.stack);
-        } else {
+        } else if (error) {
             console.error(error);
         }
         process.exit(1);
