@@ -43,28 +43,44 @@ if (pathToParamedicConfig || // --config
         ParamedicConfig.parseFromFile(pathToParamedicConfig):
         ParamedicConfig.parseFromArguments(argv);
 
-    if(argv.plugin) {
+    if (argv.plugin) {
         paramedicConfig.setPlugins(argv.plugin);
     }
 
-    if(argv.outputDir) {
+    if (argv.outputDir) {
         paramedicConfig.setOutputDir(argv.outputDir);
     }
 
-    if(argv.logMins) {
+    if (argv.logMins) {
         paramedicConfig.setLogMins(argv.logMins);
     }
 
-    if(argv.tccDb){
+    if (argv.tccDb){
         paramedicConfig.setTccDb(argv.tccDb);
     }
 
-    if(argv.platform) {
+    if (argv.platform) {
         paramedicConfig.setPlatform(argv.platform);
     }
 
-    if(argv.action) {
+    if (argv.action) {
         paramedicConfig.setAction(argv.action);
+    }
+
+    if (argv.shouldUseSauce) {
+        paramedicConfig.setShouldUseSauce(true);
+    }
+
+    if (argv.buildName) {
+        paramedicConfig.setBuildName(argv.buildName);
+    }
+
+    if (argv.sauceUser) {
+        paramedicConfig.setSauceUser(argv.sauceUser);
+    }
+
+    if (argv.sauceKey) {
+        paramedicConfig.setSauceKey(argv.sauceKey);
     }
 
     paramedic.run(paramedicConfig)
