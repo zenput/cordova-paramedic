@@ -83,6 +83,10 @@ if (pathToParamedicConfig || // --config
         paramedicConfig.setSauceKey(argv.sauceKey);
     }
 
+    if (argv.useTunnel) {
+        paramedicConfig.setUseTunnel(true);
+    }
+
     paramedic.run(paramedicConfig)
     .catch(function (error) {
         if (error && error.stack) {
