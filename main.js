@@ -68,7 +68,10 @@ if (pathToParamedicConfig || // --config
     }
 
     if (argv.shouldUseSauce) {
-        paramedicConfig.setShouldUseSauce(true);
+        if (argv.shouldUseSauce === 'false') {
+            argv.shouldUseSauce = false;
+        }
+        paramedicConfig.setShouldUseSauce(argv.shouldUseSauce);
     }
 
     if (argv.buildName) {
@@ -84,7 +87,10 @@ if (pathToParamedicConfig || // --config
     }
 
     if (argv.useTunnel) {
-        paramedicConfig.setUseTunnel(true);
+        if (argv.useTunnel === 'false') {
+            argv.useTunnel = false;
+        }
+        paramedicConfig.setUseTunnel(argv.useTunnel);
     }
 
     paramedic.run(paramedicConfig)
