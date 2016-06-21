@@ -18,6 +18,11 @@
     under the License.
 */
 
+/* global window */
+
+// CB-11430 Inject SAUCELABS_ENV global variable to indicate we're running on Saucelabs
+window.SAUCELABS_ENV = true;
+
 function Paramedic() {
 
 }
