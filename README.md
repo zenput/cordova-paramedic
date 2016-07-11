@@ -141,6 +141,44 @@ iOS only parameter. The path to the sample TCC DB file, with permissions, to be 
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
+###Sauce-only arguments
+
+####--shouldUseSauce (optional)
+
+Run tests on [Sauce Labs](https://saucelabs.com/). You'll need to specify Sauce Labs username and access key using either --sauceUser and --sauceKey arguments or SAUCE_USER and SAUCE_ACCESS_KEY environment variables.
+
+####--buildName (optional)
+
+Build name to show on Sauce Labs dashboard.
+
+####--sauceUser (optional)
+
+Sauce Labs username.
+
+####--sauceKey (optional)
+
+Sauce Labs access key.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSauce --sauceUser ***** --sauceKey ***** --buildName "paramedic-test-01"
+```
+
+####--sauceDeviceName (optional)
+
+Name of the Sauce Labs emulator. For example, "iPhone Simulator". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available device names.
+
+####--saucePlatformVersion (optional)
+
+Platform version of the Sauce Labs emulator. For example, "9.3". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available platform versions.
+
+####--sauceAppiumVersion (optional)
+
+Appium version to use when running on Sauce Labs. For example, "1.5.3".
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSauce --sauceUser ***** --sauceKey ***** --sauceDeviceName 'iPad Simulator" --saucePlatformVersion 9.1 --appiumVersion 1.5.2
+```
+
 ## Paramedic configuration file
 
 Configuration file is used when no parameters are passed to `cordova-paramedic` call or explicitly specified via `--config` parameter:
@@ -171,4 +209,3 @@ You can also use cordova-paramedic as a module directly :
   var paramedic = require('cordova-paramedic');
   paramedic.run(config);
 ```
-
