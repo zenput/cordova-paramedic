@@ -201,6 +201,10 @@ module.exports = {
 ```
 More configuration file examples could be found in `sample-config` folder.
 
+## Windows quirks
+
+For paramedic to work correctly on Windows you'll need to allow the loopback for "HelloCordova" app using [Windows Loopback Exemption Manager](https://loopback.codeplex.com/).
+
 ## API Interface
 
 You can also use cordova-paramedic as a module directly :
