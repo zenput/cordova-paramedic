@@ -52,8 +52,10 @@ var USAGE           = "Error missing args. \n" +
     "--sauceUser: (optional) Saucelabs username\n" +
     "--sauceKey: (optional) Saucelabs access key\n" +
     "--sauceDeviceName: (optional) Name of the SauceLabs emulator. For example, \"iPhone Simulator\"\n" +
-    "--saucePlatformVersion: (optional) Platform version of the SauceLabs emulator. For example, \"9.3\"" +
-    "--sauceAppiumVersion: (optional) Appium version to use when running on Saucelabs. For example, \"1.5.3\"";
+    "--saucePlatformVersion: (optional) Platform version of the SauceLabs emulator. For example, \"9.3\"\n" +
+    "--sauceAppiumVersion: (optional) Appium version to use when running on Saucelabs. For example, \"1.5.3\"\n" +
+    "--skipMainTests: (optional) Do not run main (cordova-test-framework) tests\n" +
+    "--skipAppiumTests: (optional) Do not run Appium tests";
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
@@ -125,6 +127,14 @@ if (pathToParamedicConfig || // --config
             argv.useTunnel = false;
         }
         paramedicConfig.setUseTunnel(argv.useTunnel);
+    }
+
+    if (argv.skipMainTests) {
+        paramedicConfig.setSkipMainTests(argv.skipMainTests);
+    }
+
+    if (argv.skipAppiumTests) {
+        paramedicConfig.setSkipAppiumTests(argv.skipAppiumTests);
     }
 
     paramedic.run(paramedicConfig)
