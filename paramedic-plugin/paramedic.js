@@ -31,7 +31,7 @@ Paramedic.prototype.initialize = function() {
     this.socket = io.connect(connectionUri);
 
     this.socket.on('connect', function () {
-        console.log('Paramedic has been susccessfully connected to server');
+        console.log('Paramedic has been successfully connected to the server');
         if (typeof device != 'undefined') me.socket.emit('deviceInfo', device);
     });
 
