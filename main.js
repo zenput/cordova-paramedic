@@ -67,6 +67,10 @@ if (pathToParamedicConfig || // --config
         ParamedicConfig.parseFromFile(pathToParamedicConfig):
         ParamedicConfig.parseFromArguments(argv);
 
+    if (argv.justBuild || argv.justbuild) {
+        paramedicConfig.setAction('build');
+    }
+
     if (argv.plugin) {
         paramedicConfig.setPlugins(argv.plugin);
     }
