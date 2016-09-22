@@ -1,3 +1,4 @@
+/* global window, cordova, device, jasmine, XMLHttpRequest */
 /**
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -37,6 +38,9 @@ Paramedic.prototype.initialize = function() {
 
     this.overrideConsole();
     this.injectJasmineReporter();
+
+    // indicate our presence
+    window.PARAMEDIC = true;
 };
 
 
