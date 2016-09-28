@@ -21,6 +21,7 @@
 var io = cordova.require('cordova-plugin-paramedic.socket.io');
 
 var PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
+var PARAMEDIC_FILESERVER_DEFAULT_URL = 'http://127.0.0.1:5000';
 
 function Paramedic() {
 
@@ -28,7 +29,7 @@ function Paramedic() {
 
 Paramedic.prototype.initialize = function() {
     var me = this;
-    var connectionUri = loadParamedicServerUrl();
+    var connectionUri = me.loadParamedicServerUrl();
     this.socket = io.connect(connectionUri);
 
     this.socket.on('connect', function () {
@@ -76,10 +77,7 @@ Paramedic.prototype.injectJasmineReporter = function () {
     };
 };
 
-new Paramedic().initialize();
-
-function loadParamedicServerUrl() {
-
+Paramedic.prototype.loadParamedicServerUrl = function () {
     try {
         // attempt to synchronously load medic config
         var xhr = new XMLHttpRequest();
@@ -94,6 +92,43 @@ function loadParamedicServerUrl() {
     }
 
     return PARAMEDIC_SERVER_DEFAULT_URL;
+};
+
+
+Paramedic.prototype.loadParamedicServerUrl = function () {
+    return getMedicConfig().logurl;
+};
+
+Paramedic.prototype.loadParamedicFileServerUrl = function () {
+    return getMedicConfig().fileserverurl;
+};
+
+cordova.paramedic = new Paramedic();
+cordova.paramedic.initialize();
+
+function getMedicConfig () {
+    var cfg = {
+        logurl: PARAMEDIC_SERVER_DEFAULT_URL,
+        fileserverurl: PARAMEDIC_FILESERVER_DEFAULT_URL
+    };
+
+    try {
+        // attempt to synchronously load medic config
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../medic.json", false);
+        xhr.send(null);
+        var parsedCfg = JSON.parse(xhr.responseText);
+        if (parsedCfg.logurl) {
+            cfg.logurl = parsedCfg.logurl;
+        }
+        if (parsedCfg.fileserverurl) {
+            cfg.fileserverurl = parsedCfg.fileserverurl;
+        }
+    } catch (ex) {
+        console.log('Unable to load paramedic server url: ' + ex);
+    }
+
+    return cfg;
 }
 
 module.exports = Paramedic;
