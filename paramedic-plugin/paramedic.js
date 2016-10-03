@@ -21,7 +21,6 @@
 var io = cordova.require('cordova-plugin-paramedic.socket.io');
 
 var PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
-var PARAMEDIC_FILESERVER_DEFAULT_URL = 'http://127.0.0.1:5000';
 
 function Paramedic() {
 
@@ -108,8 +107,7 @@ cordova.paramedic.initialize();
 
 function getMedicConfig () {
     var cfg = {
-        logurl: PARAMEDIC_SERVER_DEFAULT_URL,
-        fileserverurl: PARAMEDIC_FILESERVER_DEFAULT_URL
+        logurl: PARAMEDIC_SERVER_DEFAULT_URL
     };
 
     try {
@@ -120,9 +118,6 @@ function getMedicConfig () {
         var parsedCfg = JSON.parse(xhr.responseText);
         if (parsedCfg.logurl) {
             cfg.logurl = parsedCfg.logurl;
-        }
-        if (parsedCfg.fileserverurl) {
-            cfg.fileserverurl = parsedCfg.fileserverurl;
         }
     } catch (ex) {
         console.log('Unable to load paramedic server url: ' + ex);

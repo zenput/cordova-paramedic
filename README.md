@@ -43,11 +43,12 @@ cordova-paramedic --platform ios@https://github.com/apache/cordova-ios.git#4.1.0
 
 ####`--plugin` (required)
 
-Specifies test plugin, you may specify multiple --plugin flags and they will all be installed and tested together. Similat to `platform` parameter you can refer to local (or absolute) path, npm registry or git repo.
+Specifies test plugin, you may specify multiple --plugin flags and they will all be installed and tested together. You can refer to absolute path, npm registry or git repo.
+If the plugin requires variables to install, you can specify them along with its name.
 
 ```
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser
-cordova-paramedic --platform ios --plugin ../cordova-plugin-inappbrowser
+cordova-paramedic --platform ios --plugin 'azure-mobile-engagement-cordova --variable AZME_IOS_CONNECTION_STRING=Endpoint=0;AppId=0;SdkKey=0'
 cordova-paramedic --platform ios --plugin https://github.com/apache/cordova-plugin-inappbrowser
 // several plugins
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --plugin cordova-plugin-contacts
