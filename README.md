@@ -18,6 +18,7 @@ Runs cordova medic/buildbot tests locally.
 - Windows Phone 8
 - Windows (Windows 8.1, Windows Phone 8.1, Windows 10 Tablet/PC)
 - Browser
+- OSX
 
 # Usage
 
