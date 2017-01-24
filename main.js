@@ -58,6 +58,7 @@ var USAGE           = "Error missing args. \n" +
     "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
     "--skipAppiumTests : (optional) Do not run Appium tests\n" +
     "--ci : (optional) Skip tests that require user interaction\n" +
+    "--fileTransferServer : (optional) (cordova-plugin-file-transfer only) A server address tests should connect to\n" +
     "";
 
 var argv = parseArgs(process.argv.slice(2));
@@ -150,6 +151,10 @@ if (pathToParamedicConfig || // --config
 
     if (argv.target) {
         paramedicConfig.setTarget(argv.target);
+    }
+
+    if (argv.fileTransferServer) {
+        paramedicConfig.setFileTransferServer(argv.fileTransferServer);
     }
 
     paramedic.run(paramedicConfig)
