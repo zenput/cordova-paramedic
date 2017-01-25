@@ -157,6 +157,10 @@ if (pathToParamedicConfig || // --config
         paramedicConfig.setFileTransferServer(argv.fileTransferServer);
     }
 
+    if (argv.browserify) {
+        paramedicConfig.setBrowserify(true);
+    }
+
     paramedic.run(paramedicConfig)
     .catch(function (error) {
         if (error && error.stack) {
