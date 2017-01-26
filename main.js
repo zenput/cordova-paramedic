@@ -38,27 +38,28 @@ var USAGE           = "Error missing args. \n" +
     "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
               "\t(defaults to 10 minutes) \n" +
     "`PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server(default is from 8008 to 8009)\n" +
-    "--target : (optional) target to deploy to\n" +
-    "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
-    "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
-    "--config : (optional) read configuration from paramedic configuration file\n" +
-    "--outputDir : (optional) path to save Junit results file & Device logs\n" +
-    "--cleanUpAfterRun : (optional) cleans up the application after the run\n" +
-    "--logMins : (optional) Windows only - specifies number of minutes to get logs\n" +
-    "--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.\n" +
-    "--shouldUseSauce : (optional) run tests on Saucelabs\n" +
     "--buildName : (optional) Build name to show in Saucelabs dashboard\n" +
-    "--sauceUser : (optional) Saucelabs username\n" +
-    "--sauceKey : (optional) Saucelabs access key\n" +
-    "--sauceDeviceName : (optional) Name of the SauceLabs emulator. For example, \"iPhone Simulator\"\n" +
-    "--saucePlatformVersion : (optional) Platform version of the SauceLabs emulator. For example, \"9.3\"\n" +
-    "--sauceAppiumVersion : (optional) Appium version to use when running on Saucelabs. For example, \"1.5.3\"\n" +
-    "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
-    "--skipAppiumTests : (optional) Do not run Appium tests\n" +
     "--ci : (optional) Skip tests that require user interaction\n" +
+    "--cleanUpAfterRun : (optional) cleans up the application after the run\n" +
+    "--cli : (optional) A path to Cordova CLI\n" +
+    "--config : (optional) read configuration from paramedic configuration file\n" +
     "--fileTransferServer : (optional) (cordova-plugin-file-transfer only) A server address tests should connect to\n" +
+    "--justbuild : (optional) just builds the project, without running the tests \n" +
+    "--logMins : (optional) Windows only - specifies number of minutes to get logs\n" +
+    "--outputDir : (optional) path to save Junit results file & Device logs\n" +
+    "--sauceAppiumVersion : (optional) Appium version to use when running on Saucelabs. For example, \"1.5.3\"\n" +
+    "--sauceDeviceName : (optional) Name of the SauceLabs emulator. For example, \"iPhone Simulator\"\n" +
+    "--sauceKey : (optional) Saucelabs access key\n" +
+    "--saucePlatformVersion : (optional) Platform version of the SauceLabs emulator. For example, \"9.3\"\n" +
+    "--sauceUser : (optional) Saucelabs username\n" +
+    "--shouldUseSauce : (optional) run tests on Sauce Labs\n" +
+    "--skipAppiumTests : (optional) Do not run Appium tests\n" +
+    "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
+    "--target : (optional) target to deploy to\n" +
+    "--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.\n" +
+    "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
+    "--verbose : (optional) verbose mode. Display more information output\n" +
     "";
 
 var argv = parseArgs(process.argv.slice(2));
@@ -159,6 +160,14 @@ if (pathToParamedicConfig || // --config
 
     if (argv.browserify) {
         paramedicConfig.setBrowserify(true);
+    }
+
+    if (argv.cli) {
+        paramedicConfig.setCli(argv.cli);
+    }
+
+    if (argv.args) {
+        paramedicConfig.setArgs(argv.args);
     }
 
     paramedic.run(paramedicConfig)
