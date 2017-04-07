@@ -48,7 +48,7 @@
     "tmp": "0.0.25",
     "tree-kill": "^1.1.0",
     "unorm": "^1.4.1",
-    "wd": "^0.4.0"
+    "wd": "^1.2.0"
   },
   "devDependencies": {
     "jshint": "^2.6.0"
