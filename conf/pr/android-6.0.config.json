@@ -1,0 +1,8 @@
+{
+    "platform": "android",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "saucePlatformVersion": "6.0",
+    "sauceAppiumVersion": "1.5.3",
+    "verbose": true
+}
