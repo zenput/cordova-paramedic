@@ -23,6 +23,7 @@ var parseArgs       = require('minimist');
 var path            = require('path');
 var paramedic       = require('./lib/paramedic');
 var ParamedicConfig = require('./lib/ParamedicConfig');
+var util            = require('./lib/utils').utilities;
 
 var USAGE           = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version]\n" +
@@ -64,7 +65,7 @@ var USAGE           = "Error missing args. \n" +
     "";
 
 var argv = parseArgs(process.argv.slice(2));
-var pathToParamedicConfig = argv.config && path.resolve(argv.config);
+var pathToParamedicConfig = util.getConfigPath(argv.config);
 
 if (argv.version) {
     console.log(require('./package.json')['version']);
