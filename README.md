@@ -104,6 +104,14 @@ Verbose mode. Display more information output
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --verbose
 ```
 
+####--cli (optional)
+
+A path to Cordova CLI. Useful when you're testing against locally installed Cordova version.
+
+```
+cordova-paramedic --platform android --plugin cordova-plugin-device --cli ./cordova-cli/bin/cordova
+```
+
 ####--timeout (optional)
 
 Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes).
@@ -148,11 +156,11 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tc
 
 ####--shouldUseSauce (optional)
 
-Run tests on [Sauce Labs](https://saucelabs.com/). You'll need to specify Sauce Labs username and access key using either --sauceUser and --sauceKey arguments or SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables.
+Run tests on [Sauce Labs](https://saucelabs.com/). You'll need to specify Sauce Labs username and access key using either --sauceUser and --sauceKey arguments or `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables.
 
 ####--buildName (optional)
 
-Build name to show on Sauce Labs dashboard.
+Build name to show on Sauce Labs dashboard. If omitted, will use "Paramedic sauce test" and a timestamp.
 
 ####--sauceUser (optional)
 
@@ -168,11 +176,11 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSau
 
 ####--sauceDeviceName (optional)
 
-Name of the Sauce Labs emulator. For example, "iPhone Simulator". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available device names.
+Name of the Sauce Labs emulator or browser. For example, "iPhone Simulator" or "firefox". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available device names.
 
 ####--saucePlatformVersion (optional)
 
-Platform version of the Sauce Labs emulator. For example, "9.3". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available platform versions.
+Platform version of the Sauce Labs emulator OS, or version of the browser (if testing `browser` platform). For example, "9.3" or "54.0". Please refer to the [Sauce Labs platforms list](https://saucelabs.com/platforms) to see available platform versions.
 
 ####--sauceAppiumVersion (optional)
 
