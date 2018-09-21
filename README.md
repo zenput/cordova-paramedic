@@ -122,7 +122,7 @@ Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes).
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --timeout 30000
 ```
 
-#### `--outputDir (optional)
+#### `--outputDir` (optional)
 
 Directory location to store test results in junit format and the device logs
 
