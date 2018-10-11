@@ -13,8 +13,7 @@ See this [workshop instructions for more explanation](https://kerrishotts.github
 
 - Android
 - iOS
-- Windows Phone 8
-- Windows (Windows 8.1, Windows Phone 8.1, Windows 10 Tablet/PC)
+- Windows (Windows 8.1, Windows 10 UWP phone,tablet,desktop)
 - Browser
 - OSX
 
