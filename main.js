@@ -65,7 +65,9 @@ var USAGE           = "Error missing args. \n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
     "";
 
-var argv = parseArgs(process.argv.slice(2));
+var argv = parseArgs(process.argv.slice(2), {
+    "string": ["plugin"]
+});
 var pathToParamedicConfig = util.getConfigPath(argv.config);
 
 if (argv.version) {
