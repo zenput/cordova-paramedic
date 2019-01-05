@@ -64,6 +64,7 @@ var USAGE           = "Error missing args. \n" +
     "--timeout `MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
                 "\t(defaults to 10 minutes) \n" +
     "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
+    "--args: (optional) add command line args to the \"cordova build\" and \"cordov run\" commands \\n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
     "";

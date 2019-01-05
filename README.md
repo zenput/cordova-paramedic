@@ -304,6 +304,14 @@ iOS only parameter. The path to the sample TCC DB file, with permissions, to be 
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
+#### `--args` (optional)
+
+Add additional parameters to the `cordova build` and `cordova run` commands.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --args=--buildFlag='-UseModernBuildSystem=0'
+```
+
 ### Sauce Labs
 
 #### `--shouldUseSauce` (optional)
