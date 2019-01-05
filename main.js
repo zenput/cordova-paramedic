@@ -39,6 +39,7 @@ var USAGE           = "Error missing args. \n" +
                     "\tYou may specify multiple --plugin flags and they will all\n" +
                     "\tbe installed and tested together.\n" +
     "\n" +
+    "--args: (optional) add command line args to the \"cordova build\" and \"cordov run\" commands \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--buildName : (optional) Build name to show in Saucelabs dashboard\n" +
     "--ci : (optional) Skip tests that require user interaction\n" +
@@ -64,7 +65,6 @@ var USAGE           = "Error missing args. \n" +
     "--timeout `MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
                 "\t(defaults to 10 minutes) \n" +
     "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
-    "--args: (optional) add command line args to the \"cordova build\" and \"cordov run\" commands \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
     "";
