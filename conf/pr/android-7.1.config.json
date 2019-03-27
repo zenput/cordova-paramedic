@@ -1,0 +1,8 @@
+{
+    "platform": "android",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "saucePlatformVersion": "7.1",
+    "sauceDeviceName": "Android GoogleAPI Emulator",
+    "verbose": true
+}
