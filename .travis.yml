@@ -9,7 +9,7 @@ env:
     - TRAVIS_NODE_VERSION=6
     - XCODE_VERSION=xcode10.1
     - ANDROID_API_LEVEL=28
-    - ANDROID_BUILD_TOOLS_VERSION=25.0.2
+    - ANDROID_BUILD_TOOLS_VERSION=28.0.3
 
 language: node_js
 node_js: 6
