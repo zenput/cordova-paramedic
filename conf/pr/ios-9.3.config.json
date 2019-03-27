@@ -4,5 +4,5 @@
     "cleanUpAfterRun": true,
     "verbose": true,
     "saucePlatformVersion": "9.3",
-    "sauceAppiumVersion": "1.7.1"
+    "sauceAppiumVersion": "1.6.3"
 }
