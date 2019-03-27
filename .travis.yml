@@ -16,12 +16,12 @@ node_js: 6
 
 matrix:
   include:
-  # one local, without saucelabs
+    # one local test, without saucelabs
     - env: PLATFORM=local
       os: osx
       osx_image: $XCODE_VERSION
 
-    # many with saucelabs
+    # many tests with saucelabs
 
     - env: PLATFORM=browser-chrome
     - env: PLATFORM=browser-firefox
@@ -134,21 +134,19 @@ matrix:
           - 'google-gdk-license-.+'
 
 before_install:
-- node --version
-- if [[ "$PLATFORM" =~ local ]]; then npm install -g ios-deploy; fi
-- if [[ "$PLATFORM" =~ android ]]; then gradle --version; fi
-- if [[ "$PLATFORM" =~ ios ]]; then npm install -g ios-deploy; fi
-- npm install -g cordova
   # `language: android` has no Node.js installed, therefore we need to install it manually
   - if [[ "$PLATFORM" =~ android ]]; then nvm install $TRAVIS_NODE_VERSION; fi
+  - node --version
+  - if [[ "$PLATFORM" =~ local ]]; then npm install -g ios-deploy; fi
+  - if [[ "$PLATFORM" =~ android ]]; then gradle --version; fi
+  - if [[ "$PLATFORM" =~ ios ]]; then npm install -g ios-deploy; fi
+  - npm install -g cordova
 install:
-- npm install
+  - npm install
+
 script:
-- if [[ "$PLATFORM" =~ local ]]; then npm run test-browser; fi
-- if [[ "$PLATFORM" =~ local ]]; then npm run test-ios; fi
-- if [[ "$PLATFORM" =~ TODO ]]; then npm run test-android; fi
-- if [[ "$PLATFORM" != local ]]; then
-  node main.js --config ./pr/$PLATFORM --plugin ./spec/testable-plugin/ --shouldUseSauce 
-  --buildName travis-paramedic-$TRAVIS_JOB_NUMBER;
-  fi
+  - if [[ "$PLATFORM" =~ local ]]; then npm run test-browser; fi
+  - if [[ "$PLATFORM" =~ local ]]; then npm run test-ios; fi
+  - if [[ "$PLATFORM" =~ TODO ]]; then npm run test-android; fi
+  - if [[ "$PLATFORM" != local ]]; then node main.js --config ./pr/$PLATFORM --plugin ./spec/testable-plugin/ --shouldUseSauce --buildName travis-paramedic-$TRAVIS_JOB_NUMBER; fi
 
