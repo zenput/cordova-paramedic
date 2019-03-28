@@ -228,11 +228,18 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuil
 
 #### `--target` (optional)
 
-Android only parameter. The device ID (from `adb devices -l`) of a device the tests should be run on.
+For Android: The device ID (from `adb devices -l`) of a device the tests should be run on.  
 
 ```
 cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 02e7f7e9215da7f8
 ```
+
+For iOS: A string that is used to pick the device (from the `cordova run --list --emulator` output) the tests should be run on.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "^iPhone-5"
+```
+
 
 ### Test Result Server
 
