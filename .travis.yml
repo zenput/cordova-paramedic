@@ -15,14 +15,22 @@ node_js: 6
 
 matrix:
   include:
+    # one local test, without saucelabs
     - env: PLATFORM=local
       os: osx
       osx_image: xcode9
+
+    # many tests with saucelabs
+
     - env: PLATFORM=browser-chrome
-      os: linux
+    - env: PLATFORM=browser-firefox
+    - env: PLATFORM=browser-safari
+    - env: PLATFORM=browser-edge
+
     - env: PLATFORM=ios-10.0
       os: osx
       osx_image: xcode9
+      
     - env: PLATFORM=android-4.4
       os: linux
       language: android
